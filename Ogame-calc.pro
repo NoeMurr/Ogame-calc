@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        ogcalc.cpp
+        ogcalc.cpp \
+    resourcestimer.cpp
 
-HEADERS  += ogcalc.h
+HEADERS  += ogcalc.h \
+    resourcestimer.h
 
 FORMS    += ogcalc.ui
