@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QTimer>
 #include <QDebug>
+#include <QtMath>
+#include <QTime>
 
 #include "ogcalc.h"
 
@@ -13,22 +15,27 @@ class ResourcesTimer : public QObject
 public:
     explicit ResourcesTimer(QString name,
                             qint64  id,
-                            qint64  amount,
-                            qint64  incPerSec,
+                            qreal  amount,
+                            qreal  incPerSec,
                             qint64  finalAmount);
+    ~ResourcesTimer();
 
     QTimer  *timer; // timer of resource.
 
     qint64  id;     // row of the table
     QString name;  // resource name
-    qint64  amount; // the exactly amount of resorce
-    qint64  incPerSec;  // increment per second
+    qreal  amount; // the exactly amount of resorce
+    qreal  incPerSec;  // increment per second
     qint64  finalAmount;    // final amount of resource
 
+    QTime end; // the end time
+
 signals:
-    void changed(qint64  id);
+    void changed(qint64  id, qreal  amount);
+    void finished(qint64 id);
 public slots:
     void resorceTimeout();
+    bool isFinished();
 };
 
 #endif // RESOURSESTIMER_H
