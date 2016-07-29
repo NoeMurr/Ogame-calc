@@ -12,3 +12,8 @@ OgCalc::~OgCalc()
 {
     delete ui;
 }
+
+void OgCalc::updateValue(qint64 row)
+{
+
+}

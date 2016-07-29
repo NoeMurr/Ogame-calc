@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::OgCalc *ui;
+
+public slots:
+    void updateValue(qint64 row);
 };
 
 #endif // OGCALC_H
