@@ -2,6 +2,9 @@
 #define OGCALC_H
 
 #include <QMainWindow>
+#include "target.h"
+#include "targettablemodel.h"
+#include <QList>
 
 namespace Ui {
 class OgCalc;
@@ -15,11 +18,14 @@ public:
     explicit OgCalc(QWidget *parent = 0);
     ~OgCalc();
 
+private slots:
+    void on_actionNew_Target_triggered();
+
 private:
     Ui::OgCalc *ui;
 
-public slots:
-    void updateValue(qint64 row);
+    QList<Target *> *targets;
+    TargetTableModel * targetModel;
 };
 
 #endif // OGCALC_H

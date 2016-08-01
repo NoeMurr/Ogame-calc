@@ -3,27 +3,36 @@
 
 #include <QObject>
 #include <QList>
+#include <QDebug>
 #include "resourcestimer.h"
 
-class target : public QObject
+class Target : public QObject
 {
     Q_OBJECT
 public:
-    explicit target();
-    ~target();
+    explicit Target(QString name);
+    ~Target();
 
-    // proprieties
-    QList<ResourcesTimer> *timers;
+
+    QList<ResourcesTimer *> *getTimers() const;
+
+    QString getName() const;
+    void setName(const QString &value);
+
+private:
+    QList<ResourcesTimer *> *timers;
 
     QString name; // the name of target
-
 
 signals:
     void finished(QString name);
 public slots:
     bool isFinished();
     QTime getFinishTime();
-    void addTimer(ResourcesTimer *timer);
+    void addTimer(QString name,
+                  qreal  amount,
+                  qreal  incPerHour,
+                  qint64  finalAmount);
     void removeTimer(qint64 index);
 
 };

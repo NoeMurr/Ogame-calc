@@ -15,10 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         ogcalc.cpp \
     resourcestimer.cpp \
-    target.cpp
+    target.cpp \
+    targettablemodel.cpp \
+    newtargetdialog.cpp
 
 HEADERS  += ogcalc.h \
     resourcestimer.h \
-    target.h
+    target.h \
+    targettablemodel.h \
+    newtargetdialog.h
 
-FORMS    += ogcalc.ui
+FORMS    += ogcalc.ui \
+    newtargetdialog.ui

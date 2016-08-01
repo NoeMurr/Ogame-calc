@@ -6,6 +6,18 @@ OgCalc::OgCalc(QWidget *parent) :
     ui(new Ui::OgCalc)
 {
     ui->setupUi(this);
+
+    this->targets = new QList<Target *>();
+
+    this->targetModel = new TargetTableModel(this, this->targets);
+
+    ui->tableView->setModel(this->targetModel);
+
+    for (int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c)
+    {
+        ui->tableView->horizontalHeader()->setSectionResizeMode(
+            c, QHeaderView::Stretch);
+    }
 }
 
 OgCalc::~OgCalc()
@@ -13,7 +25,9 @@ OgCalc::~OgCalc()
     delete ui;
 }
 
-void OgCalc::updateValue(qint64 row)
+void OgCalc::on_actionNew_Target_triggered()
 {
-
+    qDebug() << "new target";
+    this->targetModel->appendTarget(new Target("proviamo"));
+    this->repaint();
 }

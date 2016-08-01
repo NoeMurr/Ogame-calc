@@ -7,8 +7,6 @@
 #include <QtMath>
 #include <QTime>
 
-#include "ogcalc.h"
-
 class ResourcesTimer : public QObject
 {
     Q_OBJECT
@@ -20,6 +18,24 @@ public:
                             qint64  finalAmount);
     ~ResourcesTimer();
 
+    qint64 getId() const;
+    void setId(const qint64 &value);
+
+    QTime getEndTime() const;
+
+    QString getName() const;
+    void setName(const QString &value);
+
+    qreal getAmount() const;
+    void setAmount(const qreal &value);
+
+    qint64 getFinalAmount() const;
+    void setFinalAmount(const qint64 &value);
+
+    qreal getIncPerSec() const;
+    void setIncPerSec(const qreal &value);
+
+private:
     QTimer  *timer; // timer of resource.
 
     qint64  id;     // row of the table

@@ -27,6 +27,7 @@ ResourcesTimer::~ResourcesTimer()
     delete this->timer;
 }
 
+
 void ResourcesTimer::resorceTimeout()
 {
     // updating
@@ -44,7 +45,62 @@ void ResourcesTimer::resorceTimeout()
     }
 }
 
+qint64 ResourcesTimer::getId() const
+{
+    return id;
+}
+
+void ResourcesTimer::setId(const qint64 &value)
+{
+    id = value;
+}
+
 bool ResourcesTimer::isFinished()
 {
     return (this->amount >= this->finalAmount) ? true : false;
+}
+
+QTime ResourcesTimer::getEndTime() const
+{
+    return this->end;
+}
+
+QString ResourcesTimer::getName() const
+{
+    return name;
+}
+
+void ResourcesTimer::setName(const QString &value)
+{
+    name = value;
+}
+
+qreal ResourcesTimer::getAmount() const
+{
+    return amount;
+}
+
+void ResourcesTimer::setAmount(const qreal &value)
+{
+    amount = value;
+}
+
+qint64 ResourcesTimer::getFinalAmount() const
+{
+    return finalAmount;
+}
+
+void ResourcesTimer::setFinalAmount(const qint64 &value)
+{
+    finalAmount = value;
+}
+
+qreal ResourcesTimer::getIncPerSec() const
+{
+    return incPerSec;
+}
+
+void ResourcesTimer::setIncPerSec(const qreal &value)
+{
+    incPerSec = value;
 }

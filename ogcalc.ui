@@ -35,15 +35,15 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
-   <addaction name="actionNew_Timer"/>
-   <addaction name="actionDelete"/>
+   <addaction name="actionNew_Target"/>
+   <addaction name="actionDelete_target"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionNew_Timer">
+  <action name="actionNew_Target">
    <property name="text">
-    <string>New Timer</string>
+    <string>New Target</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;create a new resources timer&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -52,9 +52,9 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="actionDelete">
+  <action name="actionDelete_target">
    <property name="text">
-    <string>Delete</string>
+    <string>Delete target</string>
    </property>
    <property name="toolTip">
     <string>Delete the selected timer</string>
