@@ -46,6 +46,8 @@ private:
 
     QTime end; // the end time
 
+    void setEndTime();
+
 signals:
     void changed(qint64  id, qreal  amount);
     void finished(qint64 id);

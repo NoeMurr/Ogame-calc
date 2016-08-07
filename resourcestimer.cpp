@@ -10,8 +10,7 @@ ResourcesTimer::ResourcesTimer(QString name, qint64 id, qreal amount, qreal incP
     this->incPerSec = incPerSec;
     this->finalAmount = finalAmount;
 
-    this->end = QTime::currentTime();
-    this->end = this->end.addSecs(qFloor((finalAmount - amount)/incPerSec));
+    setEndTime();
 
 
     connect(timer, &QTimer::timeout, this, &ResourcesTimer::resorceTimeout);
@@ -83,6 +82,7 @@ qreal ResourcesTimer::getAmount() const
 void ResourcesTimer::setAmount(const qreal &value)
 {
     amount = value;
+    setEndTime();
 }
 
 qint64 ResourcesTimer::getFinalAmount() const
@@ -93,6 +93,7 @@ qint64 ResourcesTimer::getFinalAmount() const
 void ResourcesTimer::setFinalAmount(const qint64 &value)
 {
     finalAmount = value;
+    setEndTime();
 }
 
 qreal ResourcesTimer::getIncPerSec() const
@@ -103,4 +104,15 @@ qreal ResourcesTimer::getIncPerSec() const
 void ResourcesTimer::setIncPerSec(const qreal &value)
 {
     incPerSec = value;
+    setEndTime();
+}
+
+void ResourcesTimer::setEndTime()
+{
+    if(this->incPerSec == 0){
+        this->end = QTime::currentTime();
+    }
+    else{
+        this->end = QTime::currentTime().addSecs(qFloor((finalAmount - amount)/incPerSec));
+    }
 }

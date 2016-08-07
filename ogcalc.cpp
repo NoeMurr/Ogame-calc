@@ -18,6 +18,9 @@ OgCalc::OgCalc(QWidget *parent) :
         ui->tableView->horizontalHeader()->setSectionResizeMode(
             c, QHeaderView::Stretch);
     }
+
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 OgCalc::~OgCalc()
@@ -27,7 +30,23 @@ OgCalc::~OgCalc()
 
 void OgCalc::on_actionNew_Target_triggered()
 {
-    qDebug() << "new target";
-    this->targetModel->appendTarget(new Target("proviamo"));
-    this->repaint();
+    NewTargetDialog dialog;
+    connect(&dialog,&NewTargetDialog::newTargetGenerated,this,&OgCalc::newTarget);
+    dialog.exec();
+}
+
+void OgCalc::on_actionDelete_target_triggered()
+{
+    auto items = ui->tableView->selectionModel()->selectedIndexes();
+    if(items.count() == 1)
+        this->targetModel->removeRows(items.at(0).row(),1, QModelIndex());
+    else{
+        auto count = items.at(items.count()-1).row()-items.at(0).row() +1;
+        this->targetModel->removeRows(items.at(0).row(),count, QModelIndex());
+    }
+}
+
+void OgCalc::newTarget(Target *newTarget)
+{
+    this->targetModel->appendTarget(newTarget);
 }

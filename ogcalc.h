@@ -5,6 +5,7 @@
 #include "target.h"
 #include "targettablemodel.h"
 #include <QList>
+#include "newtargetdialog.h"
 
 namespace Ui {
 class OgCalc;
@@ -21,9 +22,12 @@ public:
 private slots:
     void on_actionNew_Target_triggered();
 
+    void on_actionDelete_target_triggered();
+
+    void newTarget(Target *newTarget);
+
 private:
     Ui::OgCalc *ui;
-
     QList<Target *> *targets;
     TargetTableModel * targetModel;
 };

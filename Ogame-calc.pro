@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     resourcestimer.cpp \
     target.cpp \
     targettablemodel.cpp \
-    newtargetdialog.cpp
+    newtargetdialog.cpp \
+    newtargettablemodel.cpp
 
 HEADERS  += ogcalc.h \
     resourcestimer.h \
     target.h \
     targettablemodel.h \
-    newtargetdialog.h
+    newtargetdialog.h \
+    newtargettablemodel.h
 
 FORMS    += ogcalc.ui \
     newtargetdialog.ui

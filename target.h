@@ -5,6 +5,7 @@
 #include <QList>
 #include <QDebug>
 #include "resourcestimer.h"
+#include <QtAlgorithms>
 
 class Target : public QObject
 {
@@ -22,7 +23,7 @@ public:
 private:
     QList<ResourcesTimer *> *timers;
 
-    QString name; // the name of target
+    QString name;
 
 signals:
     void finished(QString name);
@@ -34,6 +35,7 @@ public slots:
                   qreal  incPerHour,
                   qint64  finalAmount);
     void removeTimer(qint64 index);
+    void removeTimers(qint64 startIndex, qint64 count);
 
 };
 

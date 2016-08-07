@@ -4,6 +4,8 @@
 #include "target.h"
 #include "resourcestimer.h"
 #include <QList>
+#include <QTimer>
+#include <QtAlgorithms>
 
 #define COLUMN 3
 
@@ -20,8 +22,12 @@ public:
 
     void appendTarget(Target *target);
 
-private:
+    bool removeRows(int row, int count, const QModelIndex &parent);
 
+public slots:
+    void timeout();
+private:
+    QTimer * etaTimer;
     QList<Target*> *datas;
 
 };

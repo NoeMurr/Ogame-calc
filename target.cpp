@@ -8,7 +8,7 @@ Target::Target(QString name)
 
 Target::~Target()
 {
-    delete this->timers;
+    qDeleteAll(*(this->timers));
 }
 
 QList<ResourcesTimer *> *Target::getTimers() const
@@ -50,6 +50,16 @@ void Target::removeTimer(qint64 index)
     for(qint64 i = index; i < this->timers->count(); i++){
         this->timers->at(i)->setId(this->timers->at(i)->getId()-1);
     }
+}
+
+void Target::removeTimers(qint64 startIndex, qint64 count)
+{
+    auto begin = this->timers->begin() + startIndex, end = begin + count;
+    qDeleteAll(begin, end);
+    this->timers->erase(begin, end);
+
+    for(int i = 0; i < this->timers->count(); i++)
+        this->timers->at(i)->setId(i);
 }
 
 bool Target::isFinished()
