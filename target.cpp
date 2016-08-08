@@ -37,7 +37,6 @@ void Target::addTimer(QString name, qreal amount, qreal incPerHour, qint64 final
                 finalAmount);
 
     this->timers->append(temp);
-    qDebug() << "added Item: " << temp->getName() << " " << temp->getId() << endl;
 }
 
 void Target::removeTimer(qint64 index)
@@ -62,22 +61,31 @@ void Target::removeTimers(qint64 startIndex, qint64 count)
         this->timers->at(i)->setId(i);
 }
 
+void Target::startTimer()
+{
+    this->timer = new QTimer();
+
+    connect(this->timer, &QTimer::timeout, this, &Target::timeout);
+
+    this->timer->start(1000);
+}
+
+void Target::timeout()
+{
+    if(this->isFinished()){
+        this->timer->stop();
+        emit this->finished();
+    }
+}
+
 bool Target::isFinished()
 {
-    bool finished = true;
-
-    QListIterator<ResourcesTimer*> iter(*this->timers);
-
-    while(iter.hasNext())
-    {
-        if(!iter.next()->isFinished())
-        {
-            finished = false;
-            break;
-        }
+    if(QTime::currentTime().secsTo(this->getFinishTime()) <= 0){
+        return true;
     }
-
-    return finished;
+    else{
+        return false;
+    }
 }
 
 QTime Target::getFinishTime()

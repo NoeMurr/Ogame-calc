@@ -29,3 +29,6 @@ HEADERS  += ogcalc.h \
 
 FORMS    += ogcalc.ui \
     newtargetdialog.ui
+
+DISTFILES += \
+    TODO.md

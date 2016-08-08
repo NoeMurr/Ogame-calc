@@ -6,6 +6,8 @@
 #include <QList>
 #include <QTimer>
 #include <QtAlgorithms>
+#include <QColor>
+#include <QMessageBox>
 
 #define COLUMN 3
 
@@ -26,9 +28,11 @@ public:
 
 public slots:
     void timeout();
+    void targetFinished();
 private:
     QTimer * etaTimer;
     QList<Target*> *datas;
+    QObject *parent;
 
 };
 

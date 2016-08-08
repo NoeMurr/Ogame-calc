@@ -45,8 +45,9 @@ void NewTargetDialog::on_removeButton_clicked()
 
 void NewTargetDialog::on_buttonBox_accepted()
 {
+    this->target->setName(ui->nameLineEdit->text());
+    this->target->startTimer();
     emit newTargetGenerated(this->target);
-
     this->close();
 }
 

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QList>
 #include <QDebug>
+#include <QTimer>
 #include "resourcestimer.h"
 #include <QtAlgorithms>
 
@@ -25,8 +26,10 @@ private:
 
     QString name;
 
+    QTimer *timer;
+
 signals:
-    void finished(QString name);
+    void finished();
 public slots:
     bool isFinished();
     QTime getFinishTime();
@@ -36,6 +39,10 @@ public slots:
                   qint64  finalAmount);
     void removeTimer(qint64 index);
     void removeTimers(qint64 startIndex, qint64 count);
+    void startTimer();
+
+private slots:
+    void timeout();
 
 };
 

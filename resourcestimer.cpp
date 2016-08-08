@@ -35,11 +35,9 @@ void ResourcesTimer::resorceTimeout()
     // sending signals
     if(this->amount >= this->finalAmount){
         this->timer->stop();
-        qDebug() << "finished " << this->name << "  (" << this->id << ")" << endl;
         emit finished(this->id);
     }
     else{
-        qDebug() << "changed " << this->name << "  (" << this->id << ")" << endl;
         emit changed(this->id, this->amount);
     }
 }

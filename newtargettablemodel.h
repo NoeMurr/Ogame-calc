@@ -1,6 +1,8 @@
 #ifndef NEWTARGETTABLEMODEL_H
 #define NEWTARGETTABLEMODEL_H
+
 #include <QAbstractTableModel>
+
 #include "target.h"
 
 class NewTargetTableModel : public QAbstractTableModel

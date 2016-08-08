@@ -2,9 +2,10 @@
 #define OGCALC_H
 
 #include <QMainWindow>
+#include <QList>
+
 #include "target.h"
 #include "targettablemodel.h"
-#include <QList>
 #include "newtargetdialog.h"
 
 namespace Ui {

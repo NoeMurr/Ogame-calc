@@ -40,7 +40,7 @@ void OgCalc::on_actionDelete_target_triggered()
     auto items = ui->tableView->selectionModel()->selectedIndexes();
     if(items.count() == 1)
         this->targetModel->removeRows(items.at(0).row(),1, QModelIndex());
-    else{
+    else if (items.count() != 0){
         auto count = items.at(items.count()-1).row()-items.at(0).row() +1;
         this->targetModel->removeRows(items.at(0).row(),count, QModelIndex());
     }

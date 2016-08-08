@@ -4,6 +4,7 @@ TargetTableModel::TargetTableModel(QObject *parent, QList<Target *> *datas) : QA
 {
     this->etaTimer  = new QTimer();
     this->datas     = datas;
+    this->parent    = parent;
 
     connect(etaTimer, &QTimer::timeout, this, &TargetTableModel::timeout);
 
@@ -62,6 +63,9 @@ QVariant TargetTableModel::data(const QModelIndex &index, int role) const
             break;
         case 2:
         {
+            if(this->datas->at(index.row())->isFinished()){
+                return QString("Finished");
+            }
             int hours   = QTime::currentTime().secsTo(this->datas->at(index.row())->getFinishTime())/3600;
             int mins    = (QTime::currentTime().secsTo(this->datas->at(index.row())->getFinishTime()) -
                      hours*3600) / 60;
@@ -74,9 +78,35 @@ QVariant TargetTableModel::data(const QModelIndex &index, int role) const
             return QVariant();
         }
     }
+    else if(role == Qt::BackgroundColorRole){
+        switch(index.column()){
+        case 0:
+            if(this->datas->at(index.row())->isFinished())
+                return QColor(Qt::green);
+            else
+                QVariant();
+            break;
+        case 1:
+            if(this->datas->at(index.row())->isFinished())
+                return QColor(Qt::green);
+            else
+                QVariant();
+            break;
+        case 2:
+            if(this->datas->at(index.row())->isFinished())
+                return QColor(Qt::green);
+            else
+                QVariant();
+            break;
+        default:
+            return QVariant();
+        }
+    }
     else{
         return QVariant();
     }
+
+    return QVariant();
 
 }
 
@@ -84,6 +114,7 @@ void TargetTableModel::appendTarget(Target *target)
 {
     beginInsertRows(QModelIndex(),this->rowCount(),this->rowCount());
     this->datas->append(target);
+    connect(target, &Target::finished, this, &TargetTableModel::targetFinished);
     endInsertRows();
 }
 
@@ -105,4 +136,22 @@ bool TargetTableModel::removeRows(int row, int count, const QModelIndex &parent 
 void TargetTableModel::timeout()
 {
     emit dataChanged(index(0,0),index(this->rowCount()-1, this->columnCount()-1));
+}
+
+void TargetTableModel::targetFinished()
+{
+    QObject *sender = QObject::sender();
+
+    int index = this->datas->indexOf(dynamic_cast<Target *>(sender));
+
+    if(index != -1){
+        QMessageBox::information(
+                    dynamic_cast<QWidget *>(this->parent),
+                    QString("%1 has finished").arg(this->datas->at(index)->getName()),
+                    QString("%1 has finished and now you have the resources!").arg(this->datas->at(index)->getName())
+                    );
+    }
+    else{
+        qDebug() << "Nope";
+    }
 }
