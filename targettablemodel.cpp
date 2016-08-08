@@ -66,10 +66,10 @@ QVariant TargetTableModel::data(const QModelIndex &index, int role) const
             if(this->datas->at(index.row())->isFinished()){
                 return QString("Finished");
             }
-            int hours   = QTime::currentTime().secsTo(this->datas->at(index.row())->getFinishTime())/3600;
-            int mins    = (QTime::currentTime().secsTo(this->datas->at(index.row())->getFinishTime()) -
+            int hours   = QDateTime::currentDateTime().secsTo(this->datas->at(index.row())->getFinishTime())/3600;
+            int mins    = (QDateTime::currentDateTime().secsTo(this->datas->at(index.row())->getFinishTime()) -
                      hours*3600) / 60;
-            int secs    = QTime::currentTime().secsTo(this->datas->at(index.row())->getFinishTime()) -
+            int secs    = QDateTime::currentDateTime().secsTo(this->datas->at(index.row())->getFinishTime()) -
                         hours * 3600 - mins * 60;
             return QString("%1h %2m %3s").arg(QString::number(hours), QString::number(mins), QString::number(secs));
             break;

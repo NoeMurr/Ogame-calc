@@ -11,7 +11,7 @@
 #include <QTimer>
 #include <QDebug>
 #include <QtMath>
-#include <QTime>
+#include <QDateTime>
 
 /**
  * @brief The ResourcesTimer class
@@ -57,7 +57,7 @@ public:
      * @brief getEndTime
      * @return time of end.
      */
-    QTime getEndTime() const;
+    QDateTime getEndTime() const;
 
     /**
      * @brief getName
@@ -162,7 +162,7 @@ private:
      * It's the end time of the timer.
      *
      */
-    QTime end; // the end time
+    QDateTime end; // the end time
 
     /**
      * @brief setEndTime

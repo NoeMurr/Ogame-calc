@@ -100,7 +100,7 @@ public slots:
      * @brief getFinishTime
      * @return the finish time of the target
      */
-    QTime getFinishTime();
+    QDateTime getFinishTime();
     /**
      * @brief addTimer
      * @param name

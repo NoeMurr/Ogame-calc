@@ -57,7 +57,7 @@ bool ResourcesTimer::isFinished()
     return (this->amount >= this->finalAmount) ? true : false;
 }
 
-QTime ResourcesTimer::getEndTime() const
+QDateTime ResourcesTimer::getEndTime() const
 {
     return this->end;
 }
@@ -108,9 +108,9 @@ void ResourcesTimer::setIncPerSec(const qreal &value)
 void ResourcesTimer::setEndTime()
 {
     if(this->incPerSec == 0){
-        this->end = QTime::currentTime();
+        this->end = QDateTime::currentDateTime();
     }
     else{
-        this->end = QTime::currentTime().addSecs(qFloor((finalAmount - amount)/incPerSec));
+        this->end = QDateTime::currentDateTime().addSecs(qCeil((finalAmount - amount)/incPerSec));
     }
 }

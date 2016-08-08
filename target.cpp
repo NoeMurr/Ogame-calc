@@ -80,7 +80,7 @@ void Target::timeout()
 
 bool Target::isFinished()
 {
-    if(QTime::currentTime().secsTo(this->getFinishTime()) <= 0){
+    if(QDateTime::currentDateTime().secsTo(this->getFinishTime()) <= 0){
         return true;
     }
     else{
@@ -88,9 +88,9 @@ bool Target::isFinished()
     }
 }
 
-QTime Target::getFinishTime()
+QDateTime Target::getFinishTime()
 {
-    QTime temp;
+    QDateTime temp;
 
     QListIterator<ResourcesTimer*> iter(*this->timers);
 
@@ -98,7 +98,7 @@ QTime Target::getFinishTime()
         temp = iter.next()->getEndTime();
     }
     else{
-        return QTime::currentTime();
+        return QDateTime::currentDateTime();
     }
     while(iter.hasNext()){
         if(iter.peekNext()->getEndTime() > temp){

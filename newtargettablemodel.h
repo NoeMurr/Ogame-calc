@@ -5,6 +5,9 @@
 
 #include "target.h"
 
+/**
+ * @brief The NewTargetTableModel class
+ */
 class NewTargetTableModel : public QAbstractTableModel
 {
 public:
