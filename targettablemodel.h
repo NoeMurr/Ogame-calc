@@ -11,6 +11,12 @@
 
 #define COLUMN 3
 
+/**
+ * @brief The TargetTableModel class
+ *
+ * Simple table model to show a list of Target types.
+ *
+ */
 class TargetTableModel : public QAbstractTableModel
 {
 public:
@@ -22,16 +28,57 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+    /**
+     * @brief appendTarget
+     * @param target
+     *
+     * This method permits to add a target to the list of targets.
+     *
+     */
     void appendTarget(Target *target);
 
     bool removeRows(int row, int count, const QModelIndex &parent);
 
 public slots:
+    /**
+     * @brief timeout
+     *
+     * It's connected to the timeout of the timer necessary to updates.
+     *
+     */
     void timeout();
+
+    /**
+     * @brief targetFinished
+     *
+     * when a target is finished show an information MessageBox to inform the user.
+     *
+     */
     void targetFinished();
+
 private:
+    /**
+     * @brief etaTimer
+     *
+     * Timer necessary for updating.
+     *
+     */
     QTimer * etaTimer;
+
+    /**
+     * @brief datas
+     *
+     * the list of Targets to show.
+     *
+     */
     QList<Target*> *datas;
+
+    /**
+     * @brief parent
+     *
+     * the parent widget.
+     *
+     */
     QObject *parent;
 
 };
